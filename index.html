@@ -7,7 +7,37 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
+      <header class="site-header">
+    <h1 class="logo">MovieDiscover</h1>
+    <nav>
+      <input id="search-title" placeholder="Search movie by exact title (e.g. Inception)" />
+      <button id="btn-search-title">Search</button>
+      <input id="search-keyword" placeholder="Search by keyword (e.g. batman, love)" />
+      <button id="btn-search-keyword">Browse</button>
+      <button id="btn-random">Discover a Movie</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="top-rated" class="panel">
+      <h2>Top Rated / Popular</h2>
+      <div id="top-list" class="grid"></div>
+    </section>
+
+    <section id="results-section" class="panel">
+      <h2 id="results-title">Search Results</h2>
+      <div id="results" class="grid"></div>
+    </section>
+
+    <section id="details-section" class="panel hidden">
+      <button id="back-btn">← Back</button>
+      <div id="details"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Powered by OMDb API. Replace <code>YOUR_API_KEY</code> in js/app.js with your API key.</small>
+  </footer>
 
 
     <script src="assets/js/app.js"></script>

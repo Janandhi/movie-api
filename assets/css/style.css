@@ -1,0 +1,120 @@
+:root {
+    --max-w: 1100px;
+    --gap: 12px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-header {
+    background: #0b1221;
+    color: #fff;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    margin: 0;
+    font-size: 1.2rem
+}
+
+.site-header nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end
+}
+
+.site-header input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc
+}
+
+.site-header button {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer
+}
+
+main {
+    flex: 1;
+    max-width: var(--max-w);
+    margin: 16px auto;
+    width: 95%
+}
+
+.panel {
+    margin-bottom: 20px
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column
+}
+
+.card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background: #eee
+}
+
+.card .meta {
+    padding: 10px
+}
+
+.hidden {
+    display: none
+}
+
+#details {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap
+}
+
+#details img {
+    max-width: 300px;
+    width: 100%;
+    height: auto
+}
+
+@media (max-width:600px) {
+    .card img {
+        height: 200px
+    }
+}
+
+footer {
+    padding: 12px;
+    text-align: center;
+    background: #f6f6f6
+}
