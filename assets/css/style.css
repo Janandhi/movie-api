@@ -1,0 +1,162 @@
+
+
+
+body.dark {
+    background: #0b0f19;
+    color: #e6e6e6;
+    font-family: "Poppins", Arial, sans-serif;
+    margin: 0;
+}
+
+
+
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #1a2238, #0b0f19);
+    border-bottom: 1px solid #222;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+.search-area {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.search-area input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #141a2a;
+    color: #fff;
+    width: 260px;
+}
+
+.search-area button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #3746ff;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.search-area button:hover {
+    background: #5966ff;
+}
+
+.discover-btn {
+    background: #ff7b00;
+}
+
+.discover-btn:hover {
+    background: #ff9333;
+}
+
+
+
+
+
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    border-left: 4px solid #ff7b00;
+    padding-left: 12px;
+    margin-bottom: 12px;
+    color: #ffad63;
+}
+
+
+
+
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+}
+
+
+
+
+
+
+.card {
+    background: #141a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    border: 1px solid #1f263b;
+}
+
+.card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.meta {
+    padding: 12px;
+}
+
+
+
+
+
+
+
+#details {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#details img {
+    width: 280px;
+    border-radius: 10px;
+}
+
+
+
+
+#back-btn {
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: #3746ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    background: #0e1220;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}

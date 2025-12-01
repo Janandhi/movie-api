@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movies.api</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 </head>
-<body>
-    
+
+<body class="dark">
+
+    <!-- TOP SECTION -->
+    <header class="hero">
+        <h1 class="hero-title">🎬 MovieDiscover</h1>
+        <p class="hero-sub">Find movies instantly — Search, Browse, Discover</p>
 
 
+
+        <!-- MOVIE SEARCH SECTION -->
+        <div class="search-area">
+            <input id="search-title" placeholder="Search movie by exact title (e.g. Inception)" />
+            <button id="btn-search-title">Search</button>
+
+            <input id="search-keyword" placeholder="Search by keyword (e.g. batman, love)" />
+            <button id="btn-search-keyword">Browse</button>
+
+            <button id="btn-random" class="discover-btn"> Discover a Movie</button>
+        </div>
+    </header>
+
+
+
+    <!-- MIDDLE SECTION -->
+    <main id="main">
+        <section id="top-rated" class="panel">
+            <h2>Top Rated Movies</h2>
+            <div id="top-list" class="grid"></div>
+        </section>
+
+
+
+        <!-- RESULT SECTION -->
+        <section id="results-section" class="panel">
+            <h2 id="results-title">Search Results</h2>
+            <div id="results" class="grid"></div>
+        </section>
+
+
+
+        <!-- DETAIL SECTION -->
+        <section id="details-section" class="panel hidden">
+            <button id="back-btn">← Back</button>
+            <div id="details"></div>
+        </section>
+    </main>
+
+
+
+    <!-- BOTTOM SECTION -->
+    <footer>
+        <small>Powered by OMDb API</small>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
     <script src="assets/js/app.js"></script>
+
 </body>
+
 </html>
