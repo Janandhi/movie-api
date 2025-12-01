@@ -1,17 +1,7 @@
 console.log("JS Loaded");
 
-// WEATHER API — must use HTTPS
-fetch("https://api.weatherapi.com/v1/current.json?key=c4210f8c4d7c43c1a2995926251611&q=colombo&aqi=no")
-.then(res => res.json())
-.then(data => console.log("Weather Data:", data))
-.catch(err => console.error(err));
 
-
-// =========================
 // OMDb API
-// =========================
-
-// Your API key
 const API_KEY = "1c768e4f";
 const API_BASE = "https://www.omdbapi.com/";
 
@@ -29,9 +19,18 @@ async function omdbFetch(params){
 }
 
 
-// =========================
+
+// SCROLL FUNCTION
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+
+
 // DOM REFERENCES
-// =========================
 const resultsEl = document.getElementById("results");
 const resultsTitleEl = document.getElementById("results-title");
 const detailsSection = document.getElementById("details-section");
@@ -40,9 +39,8 @@ const resultsSection = document.getElementById("results-section");
 const topListEl = document.getElementById("top-list");
 
 
-// =========================
+
 // SEARCH BY TITLE
-// =========================
 document.getElementById("btn-search-title").addEventListener("click", async ()=>{
   const title = document.getElementById("search-title").value.trim();
   if(!title) return alert("Enter a movie title");
@@ -54,48 +52,53 @@ document.getElementById("btn-search-title").addEventListener("click", async ()=>
 
     if(data.Response === "False"){
       resultsEl.innerHTML = `<p>No movie found for "${title}"</p>`;
+      scrollToSection("results-section");
       return;
     }
 
     resultsEl.innerHTML = "";
     resultsEl.appendChild(createCardFromMovie(data));
 
-  }catch(err){
+    scrollToSection("results-section");
+
+  } catch(err){
     console.error(err);
     alert("Error fetching movie");
   }
 });
 
 
-// =========================
+
 // SEARCH BY KEYWORD
-// =========================
 document.getElementById("btn-search-keyword").addEventListener("click", async ()=>{
   const kw = document.getElementById("search-keyword").value.trim();
   if(!kw) return alert("Enter a keyword");
 
   try{
     resultsTitleEl.textContent = `Search results: ${kw}`;
+
     const data = await omdbFetch({ s: kw });
 
     if(data.Response === "False"){
-      resultsEl.innerHTML = `<p>No results for "${kw}"</p>`;
+      resultsEl.innerHTML = `<p>No results found for "${kw}"</p>`;
+      scrollToSection("results-section");
       return;
     }
 
     resultsEl.innerHTML = "";
     data.Search.forEach(m => resultsEl.appendChild(createCard(m)));
 
-  }catch(err){
+    scrollToSection("results-section");
+
+  } catch(err){
     console.error(err);
-    alert("Error searching");
+    alert("Error searching movie");
   }
 });
 
 
-// =========================
+
 // RANDOM MOVIE GENERATOR
-// =========================
 document.getElementById("btn-random").addEventListener("click", async ()=>{
   const list = [
     "tt0111161","tt0068646","tt1375666",
@@ -105,15 +108,17 @@ document.getElementById("btn-random").addEventListener("click", async ()=>{
 
   const id = list[Math.floor(Math.random() * list.length)];
   await showMovieById(id);
+
+  scrollToSection("details-section");
 });
 
 
-// =========================
+
 // CARD GENERATORS
-// =========================
 function createCard(movie){
   const card = document.createElement("div");
   card.className = "card";
+
   card.innerHTML = `
     <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'assets/placeholder-poster.png'}" alt="${movie.Title}">
     <div class="meta">
@@ -121,6 +126,7 @@ function createCard(movie){
       <p>${movie.Year}</p>
     </div>
   `;
+
   card.onclick = () => showMovieById(movie.imdbID);
 
   return card;
@@ -136,9 +142,8 @@ function createCardFromMovie(movie){
 }
 
 
-// =========================
+
 // MOVIE DETAILS PAGE
-// =========================
 async function showMovieById(imdbID){
   try{
     const m = await omdbFetch({ i: imdbID, plot: "full" });
@@ -155,9 +160,11 @@ async function showMovieById(imdbID){
 
     location.hash = `movie=${imdbID}`;
 
-  }catch(err){
+    scrollToSection("details-section");
+
+  } catch(err){
     console.error(err);
-    alert("Error fetching details");
+    alert("Error fetching movie details");
   }
 }
 
@@ -180,12 +187,13 @@ document.getElementById("back-btn").addEventListener("click", ()=>{
   detailsSection.classList.add("hidden");
   resultsSection.classList.remove("hidden");
   location.hash = "";
+
+  scrollToSection("top-rated");
 });
 
 
-// =========================
+
 // LOAD TOP MOVIES
-// =========================
 const TOP_IDS = ["tt0111161","tt0068646","tt1375666","tt0137523","tt0109830"];
 
 async function loadTop(){
@@ -194,9 +202,12 @@ async function loadTop(){
     try{
       const m = await omdbFetch({ i: id });
       if(m.Response === "True"){
-        topListEl.appendChild(
-          createCard({Title: m.Title, Year: m.Year, imdbID: m.imdbID, Poster: m.Poster})
-        );
+        topListEl.appendChild(createCard({
+          Title: m.Title,
+          Year: m.Year,
+          imdbID: m.imdbID,
+          Poster: m.Poster
+        }));
       }
     }catch(e){
       console.warn("Top fetch error:", e);
@@ -205,9 +216,8 @@ async function loadTop(){
 }
 
 
-// =========================
+
 // PAGE LOAD EVENTS
-// =========================
 window.addEventListener("load", ()=>{
   loadTop();
 
@@ -216,3 +226,4 @@ window.addEventListener("load", ()=>{
     if(id) showMovieById(id);
   }
 });
+
